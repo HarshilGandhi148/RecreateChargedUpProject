@@ -19,10 +19,14 @@ public final class Constants {
   }
 
   public static class CAN_IDs {
-    public static final int frontLeftID = 1;
-    public static final int backLeftID = 2;
-    public static final int frontRightID = 3;
-    public static final int backRightID = 4;
+    public static final int frontLeft1ID = 1;
+    public static final int backLeft1ID = 2;
+    public static final int frontRight1ID = 3;
+    public static final int backRight1ID = 4;
+    public static final int frontLeft2ID = 5;
+    public static final int backLeft2ID = 6;
+    public static final int frontRight2ID = 7;
+    public static final int backRight2ID = 8;
 
     public static final int shoulderID = 0;
     public static final int forearmID = 0;

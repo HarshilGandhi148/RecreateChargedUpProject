@@ -21,7 +21,7 @@ public class AutonStrafeCommand extends CommandBase {
     addRequirements(Subsystems.driveSubsystem);
     this.effort = effort;
     this.time = time;
-    turnPID = new GalacPIDController(0.01, 0, 0, 0.05, () -> Subsystems.driveSubsystem.getGyroYaw() % 360, 0, 1);
+    turnPID = new GalacPIDController(0.01, 0, 0, 0.05, () -> Subsystems.driveSubsystem.getGyroYaw(), 0, 1);
   }
 
   // Called when the command is initially scheduled.

@@ -17,7 +17,7 @@ public class AutonRotateCommand extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Subsystems.driveSubsystem);
     this.degrees = degrees;
-    turnPID = new GalacPIDController(0.008, 0, 0, 0.05, () -> Subsystems.driveSubsystem.getGyroYaw() % 360, degrees, 2);
+    turnPID = new GalacPIDController(0.008, 0, 0, 0.05, () -> Subsystems.driveSubsystem.getGyroYaw(), degrees, 2);
   }
 
   // Called when the command is initially scheduled.

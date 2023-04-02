@@ -16,8 +16,8 @@ public class AutonBalanceCommand extends CommandBase {
   public AutonBalanceCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Subsystems.driveSubsystem);
-    turnPID = new GalacPIDController(0.009, 0, 0, 0.05, () -> Subsystems.driveSubsystem.getGyroYaw() % 360, 0, 1);
-    balancePID = new GalacPIDController(0.008, 0, 0, 0.05, () -> Subsystems.driveSubsystem.getGyroPitch() % 360, 0, 3);
+    turnPID = new GalacPIDController(0.009, 0, 0, 0.05, () -> Subsystems.driveSubsystem.getGyroYaw(), 0, 1);
+    balancePID = new GalacPIDController(0.008, 0, 0, 0.05, () -> Subsystems.driveSubsystem.getGyroPitch(), 0, 3);
 
   }
 

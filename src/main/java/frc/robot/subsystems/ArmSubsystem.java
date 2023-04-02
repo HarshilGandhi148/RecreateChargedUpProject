@@ -38,8 +38,8 @@ public class ArmSubsystem extends SubsystemBase {
   double wristGearRatio = 0.0052;
 
   // PID
-  public GalacPIDController shoulderPID = new GalacPIDController(0.017, 0, 0, 0.01, () -> (double) getShoulderAngle(), 0, 0);
-  public GalacPIDController forearmPID = new GalacPIDController(0.02, 0.00, 0, 0.01, () -> (double) getForearmAngle(), 0, 0);
+  public GalacPIDController shoulderPID = new GalacPIDController(0.017, 0, 0, 0.01, () -> getShoulderAngle(), 0, 0);
+  public GalacPIDController forearmPID = new GalacPIDController(0.02, 0.00, 0, 0.01, () -> getForearmAngle(), 0, 0);
   public GalacPIDController wristPID = new GalacPIDController(0.005, 0, 0, 0.007, () -> getWristAngle(), 0, 0);
   
   /** Creates a new ArmSubsystem. */
@@ -51,10 +51,10 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   public void resetArmEncoders() {  
-      shoulderEncoder.setPosition(0);
-      forearmEncoder.setPosition(0);
-      wristEncoder.setPosition(0);
-      intakeEncoder.setPosition(0);
+    shoulderEncoder.setPosition(0);
+    forearmEncoder.setPosition(0);
+    wristEncoder.setPosition(0);
+    intakeEncoder.setPosition(0);
   }
 
   public void setArmBrakeEnabled() {
@@ -115,6 +115,7 @@ public class ArmSubsystem extends SubsystemBase {
     shoulderPID.setSetpoint(shoulderSetpoint);
     forearmPID.setSetpoint(forearmSetpoint);
     wristPID.setSetpoint(wristSetpoint);
+
     moveShoulder(shoulderPID.getEffort());
     moveForearm(forearmPID.getEffort());
     moveWrist(wristPID.getEffort());

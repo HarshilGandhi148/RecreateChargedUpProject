@@ -19,7 +19,7 @@ public class AutonDriveCommand extends CommandBase {
     addRequirements(Subsystems.driveSubsystem);
     this.distance = distance;
     this.effort = effort;
-    turnPID = new GalacPIDController(0.001, 0, 0, 0.005, () -> Subsystems.driveSubsystem.getGyroYaw() % 360, 0, 1);
+    turnPID = new GalacPIDController(0.001, 0, 0, 0.005, () -> Subsystems.driveSubsystem.getGyroYaw(), 0, 1);
   }
 
   // Called when the command is initially scheduled.

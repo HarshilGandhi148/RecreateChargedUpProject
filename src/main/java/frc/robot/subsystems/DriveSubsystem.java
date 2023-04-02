@@ -13,16 +13,21 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
   
   // driveMotorControllers
-  public CANSparkMax frontLeftMotor = new CANSparkMax(Constants.CAN_IDs.frontLeftID, MotorType.kBrushless);
-  public CANSparkMax frontRightMotor = new CANSparkMax(Constants.CAN_IDs.frontRightID, MotorType.kBrushless);
-  public CANSparkMax backLeftMotor = new CANSparkMax(Constants.CAN_IDs.backLeftID, MotorType.kBrushless);
-  public CANSparkMax backRightMotor = new CANSparkMax(Constants.CAN_IDs.backRightID, MotorType.kBrushless);
+  public CANSparkMax frontLeftMotor1 = new CANSparkMax(Constants.CAN_IDs.frontLeft1ID, MotorType.kBrushless);
+  public CANSparkMax frontRightMotor1 = new CANSparkMax(Constants.CAN_IDs.frontRight1ID, MotorType.kBrushless);
+  public CANSparkMax backLeftMotor1 = new CANSparkMax(Constants.CAN_IDs.backLeft1ID, MotorType.kBrushless);
+  public CANSparkMax backRightMotor1 = new CANSparkMax(Constants.CAN_IDs.backRight1ID, MotorType.kBrushless);
+  public CANSparkMax frontLeftMotor2 = new CANSparkMax(Constants.CAN_IDs.frontLeft2ID, MotorType.kBrushless);
+  public CANSparkMax frontRightMotor2 = new CANSparkMax(Constants.CAN_IDs.frontRight2ID, MotorType.kBrushless);
+  public CANSparkMax backLeftMotor2 = new CANSparkMax(Constants.CAN_IDs.backLeft2ID, MotorType.kBrushless);
+  public CANSparkMax backRightMotor2 = new CANSparkMax(Constants.CAN_IDs.backRight2ID, MotorType.kBrushless);
 
   MecanumDrive mecanumDrive;
 
@@ -30,81 +35,135 @@ public class DriveSubsystem extends SubsystemBase {
   Rotation2d rotation2d;
 
   // driveEncoders
-  public RelativeEncoder frontLeftEncoder;
-  public RelativeEncoder frontRightEncoder;
-  public RelativeEncoder backLeftEncoder;
-  public RelativeEncoder backRightEncoder;
+  public RelativeEncoder frontLeftEncoder1;
+  public RelativeEncoder frontRightEncoder1;
+  public RelativeEncoder backLeftEncoder1;
+  public RelativeEncoder backRightEncoder1;
+  public RelativeEncoder frontLeftEncoder2;
+  public RelativeEncoder frontRightEncoder2;
+  public RelativeEncoder backLeftEncoder2;
+  public RelativeEncoder backRightEncoder2;
+
+  public double frontLeftEncoder;
+  public double frontRightEncoder;
+  public double backLeftEncoder;
+  public double backRightEncoder;
+
+  // motor controller groups
+  public MotorControllerGroup frontLeftGroup = new MotorControllerGroup(frontLeftMotor1, frontLeftMotor2);
+  public MotorControllerGroup frontRightGroup = new MotorControllerGroup(frontRightMotor1, frontRightMotor2);
+  public MotorControllerGroup backLeftGroup = new MotorControllerGroup(backLeftMotor1, backLeftMotor2);
+  public MotorControllerGroup backRightGroup = new MotorControllerGroup(backRightMotor1, backRightMotor2);
 
 
   
   /** Creates a new Subsystem. */
   public DriveSubsystem() {
-    frontLeftEncoder = frontLeftMotor.getEncoder();
-    frontRightEncoder = frontRightMotor.getEncoder();
-    backLeftEncoder = backLeftMotor.getEncoder();
-    backRightEncoder = backRightMotor.getEncoder();
+    frontLeftEncoder1 = frontLeftMotor1.getEncoder();
+    frontRightEncoder1 = frontRightMotor1.getEncoder();
+    backLeftEncoder1 = backLeftMotor1.getEncoder();
+    backRightEncoder1 = backRightMotor1.getEncoder();
+    frontLeftEncoder2 = frontLeftMotor1.getEncoder();
+    frontRightEncoder2 = frontRightMotor1.getEncoder();
+    backLeftEncoder2 = backLeftMotor1.getEncoder();
+    backRightEncoder2 = backRightMotor1.getEncoder();
 
-    frontRightMotor.setInverted(true);
-    backRightMotor.setInverted(true);
+    frontLeftEncoder = (frontLeftEncoder1.getPosition() + frontLeftEncoder2.getPosition())/2;
+    frontRightEncoder = (frontRightEncoder1.getPosition() + frontRightEncoder2.getPosition())/2;
+    backLeftEncoder = (backLeftEncoder1.getPosition() + backLeftEncoder2.getPosition())/2;
+    backRightEncoder = (backRightEncoder1.getPosition() + backRightEncoder2.getPosition())/2;
 
-    mecanumDrive = new MecanumDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
+
+
+    frontRightGroup.setInverted(true);
+    backRightGroup.setInverted(true);
+
+    mecanumDrive = new MecanumDrive(frontLeftGroup, backLeftGroup, frontRightGroup, backRightGroup);
 
     gyro = new AHRS(Port.kMXP);
     }
 
   public void setCurrentLimits(int currentLimit){
-    frontLeftMotor.setSmartCurrentLimit(currentLimit);
-    frontRightMotor.setSmartCurrentLimit(currentLimit);
-    backLeftMotor.setSmartCurrentLimit(currentLimit);
-    backRightMotor.setSmartCurrentLimit(currentLimit);
+    frontLeftMotor1.setSmartCurrentLimit(currentLimit);
+    frontRightMotor1.setSmartCurrentLimit(currentLimit);
+    backLeftMotor1.setSmartCurrentLimit(currentLimit);
+    backRightMotor1.setSmartCurrentLimit(currentLimit);
+    frontLeftMotor2.setSmartCurrentLimit(currentLimit);
+    frontRightMotor2.setSmartCurrentLimit(currentLimit);
+    backLeftMotor2.setSmartCurrentLimit(currentLimit);
+    backRightMotor2.setSmartCurrentLimit(currentLimit);
   }
   
   public void enableDriveVoltage(double voltage){
     //default is 11
-    frontLeftMotor.enableVoltageCompensation(voltage); 
-    frontRightMotor.enableVoltageCompensation(voltage);
-    backLeftMotor.enableVoltageCompensation(voltage);
-    backRightMotor.enableVoltageCompensation(voltage);
+    frontLeftMotor1.enableVoltageCompensation(voltage); 
+    frontRightMotor1.enableVoltageCompensation(voltage);
+    backLeftMotor1.enableVoltageCompensation(voltage);
+    backRightMotor1.enableVoltageCompensation(voltage);
+    frontLeftMotor2.enableVoltageCompensation(voltage); 
+    frontRightMotor2.enableVoltageCompensation(voltage);
+    backLeftMotor2.enableVoltageCompensation(voltage);
+    backRightMotor2.enableVoltageCompensation(voltage);
   }
   
   public void disableDriveVoltage(){
-    frontLeftMotor.disableVoltageCompensation();
-    frontRightMotor.disableVoltageCompensation();
-    backLeftMotor.disableVoltageCompensation();
-    backRightMotor.disableVoltageCompensation();
+    frontLeftMotor1.disableVoltageCompensation();
+    frontRightMotor1.disableVoltageCompensation();
+    backLeftMotor1.disableVoltageCompensation();
+    backRightMotor1.disableVoltageCompensation();
+    frontLeftMotor2.disableVoltageCompensation();
+    frontRightMotor2.disableVoltageCompensation();
+    backLeftMotor2.disableVoltageCompensation();
+    backRightMotor2.disableVoltageCompensation();
   }
   
   public void setRampRate(double rate){
-    frontLeftMotor.setOpenLoopRampRate(rate);
-    frontRightMotor.setOpenLoopRampRate(rate);
-    backLeftMotor.setOpenLoopRampRate(rate);
-    backRightMotor.setOpenLoopRampRate(rate);
+    frontLeftMotor1.setOpenLoopRampRate(rate);
+    frontRightMotor1.setOpenLoopRampRate(rate);
+    backLeftMotor1.setOpenLoopRampRate(rate);
+    backRightMotor1.setOpenLoopRampRate(rate);
+    frontLeftMotor2.setOpenLoopRampRate(rate);
+    frontRightMotor2.setOpenLoopRampRate(rate);
+    backLeftMotor2.setOpenLoopRampRate(rate);
+    backRightMotor2.setOpenLoopRampRate(rate);
   }
 
   public void setBrakeEnabled() {
-    frontLeftMotor.setIdleMode(IdleMode.kBrake);
-    frontRightMotor.setIdleMode(IdleMode.kBrake);
-    backLeftMotor.setIdleMode(IdleMode.kBrake);
-    backRightMotor.setIdleMode(IdleMode.kBrake);
+    frontLeftMotor1.setIdleMode(IdleMode.kBrake);
+    frontRightMotor1.setIdleMode(IdleMode.kBrake);
+    backLeftMotor1.setIdleMode(IdleMode.kBrake);
+    backRightMotor1.setIdleMode(IdleMode.kBrake);
+    frontLeftMotor2.setIdleMode(IdleMode.kBrake);
+    frontRightMotor2.setIdleMode(IdleMode.kBrake);
+    backLeftMotor2.setIdleMode(IdleMode.kBrake);
+    backRightMotor2.setIdleMode(IdleMode.kBrake);
   }
 
   public void setCoastEnabled() {
-    frontLeftMotor.setIdleMode(IdleMode.kCoast);
-    frontRightMotor.setIdleMode(IdleMode.kCoast);
-    backLeftMotor.setIdleMode(IdleMode.kCoast);
-    backRightMotor.setIdleMode(IdleMode.kCoast);
+    frontLeftMotor1.setIdleMode(IdleMode.kCoast);
+    frontRightMotor1.setIdleMode(IdleMode.kCoast);
+    backLeftMotor1.setIdleMode(IdleMode.kCoast);
+    backRightMotor1.setIdleMode(IdleMode.kCoast);
+    frontLeftMotor2.setIdleMode(IdleMode.kCoast);
+    frontRightMotor2.setIdleMode(IdleMode.kCoast);
+    backLeftMotor2.setIdleMode(IdleMode.kCoast);
+    backRightMotor2.setIdleMode(IdleMode.kCoast);
   }
 
   public void resetEncoders() {
-    frontLeftEncoder.setPosition(0);
-    frontRightEncoder.setPosition(0);
-    backLeftEncoder.setPosition(0);
-    backRightEncoder.setPosition(0);
+    frontLeftEncoder1.setPosition(0);
+    frontRightEncoder1.setPosition(0);
+    backLeftEncoder1.setPosition(0);
+    backRightEncoder1.setPosition(0);
+    frontLeftEncoder2.setPosition(0);
+    frontRightEncoder2.setPosition(0);
+    backLeftEncoder2.setPosition(0);
+    backRightEncoder2.setPosition(0);
   }
 
   public double getAverageEncoderDistance() {
     double conversionFactor = Math.PI * Constants.RobotConstants.WHEEL_DIAMETER / Constants.RobotConstants.GEAR_RATIO;
-    return (frontLeftEncoder.getPosition()*conversionFactor + frontRightEncoder.getPosition()*conversionFactor + backLeftEncoder.getPosition()*conversionFactor + backRightEncoder.getPosition()*conversionFactor)/4;
+    return (frontLeftEncoder*conversionFactor + frontRightEncoder*conversionFactor + backLeftEncoder*conversionFactor + backRightEncoder*conversionFactor)/4;
   }
 
   public void resetGyro () {
@@ -112,12 +171,12 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getGyroYaw () {
-    return gyro.getYaw();
+    return gyro.getYaw() % 360;
   }
 
   public double getGyroPitch () {
     // 8.92 is offset
-    return gyro.getPitch() + 8.92;
+    return (gyro.getPitch() + 8.92) % 360;
   }
 
   public void mechDrive(double forward, double strafe, double rotation, boolean isFieldOriented){
