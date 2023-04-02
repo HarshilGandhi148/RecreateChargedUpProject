@@ -63,10 +63,10 @@ public class DriveSubsystem extends SubsystemBase {
     frontRightEncoder1 = frontRightMotor1.getEncoder();
     backLeftEncoder1 = backLeftMotor1.getEncoder();
     backRightEncoder1 = backRightMotor1.getEncoder();
-    frontLeftEncoder2 = frontLeftMotor1.getEncoder();
-    frontRightEncoder2 = frontRightMotor1.getEncoder();
-    backLeftEncoder2 = backLeftMotor1.getEncoder();
-    backRightEncoder2 = backRightMotor1.getEncoder();
+    frontLeftEncoder2 = frontLeftMotor2.getEncoder();
+    frontRightEncoder2 = frontRightMotor2.getEncoder();
+    backLeftEncoder2 = backLeftMotor2.getEncoder();
+    backRightEncoder2 = backRightMotor2.getEncoder();
 
     frontLeftEncoder = (frontLeftEncoder1.getPosition() + frontLeftEncoder2.getPosition())/2;
     frontRightEncoder = (frontRightEncoder1.getPosition() + frontRightEncoder2.getPosition())/2;
