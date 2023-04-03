@@ -35,19 +35,11 @@ public class DriveSubsystem extends SubsystemBase {
   Rotation2d rotation2d;
 
   // driveEncoders
-  public RelativeEncoder frontLeftEncoder1;
-  public RelativeEncoder frontRightEncoder1;
-  public RelativeEncoder backLeftEncoder1;
-  public RelativeEncoder backRightEncoder1;
-  public RelativeEncoder frontLeftEncoder2;
-  public RelativeEncoder frontRightEncoder2;
-  public RelativeEncoder backLeftEncoder2;
-  public RelativeEncoder backRightEncoder2;
-
-  public double frontLeftEncoder;
-  public double frontRightEncoder;
-  public double backLeftEncoder;
-  public double backRightEncoder;
+  public RelativeEncoder frontLeftEncoder;
+  public RelativeEncoder frontRightEncoder;
+  public RelativeEncoder backLeftEncoder;
+  public RelativeEncoder backRightEncoder;
+ 
 
   // motor controller groups
   public MotorControllerGroup frontLeftGroup = new MotorControllerGroup(frontLeftMotor1, frontLeftMotor2);
@@ -59,21 +51,10 @@ public class DriveSubsystem extends SubsystemBase {
   
   /** Creates a new Subsystem. */
   public DriveSubsystem() {
-    frontLeftEncoder1 = frontLeftMotor1.getEncoder();
-    frontRightEncoder1 = frontRightMotor1.getEncoder();
-    backLeftEncoder1 = backLeftMotor1.getEncoder();
-    backRightEncoder1 = backRightMotor1.getEncoder();
-    frontLeftEncoder2 = frontLeftMotor2.getEncoder();
-    frontRightEncoder2 = frontRightMotor2.getEncoder();
-    backLeftEncoder2 = backLeftMotor2.getEncoder();
-    backRightEncoder2 = backRightMotor2.getEncoder();
-
-    frontLeftEncoder = (frontLeftEncoder1.getPosition() + frontLeftEncoder2.getPosition())/2;
-    frontRightEncoder = (frontRightEncoder1.getPosition() + frontRightEncoder2.getPosition())/2;
-    backLeftEncoder = (backLeftEncoder1.getPosition() + backLeftEncoder2.getPosition())/2;
-    backRightEncoder = (backRightEncoder1.getPosition() + backRightEncoder2.getPosition())/2;
-
-
+    frontLeftEncoder = frontLeftMotor1.getEncoder();
+    frontRightEncoder = frontRightMotor1.getEncoder();
+    backLeftEncoder = backLeftMotor1.getEncoder();
+    backRightEncoder = backRightMotor1.getEncoder();
 
     frontRightGroup.setInverted(true);
     backRightGroup.setInverted(true);
@@ -151,19 +132,19 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void resetEncoders() {
-    frontLeftEncoder1.setPosition(0);
-    frontRightEncoder1.setPosition(0);
-    backLeftEncoder1.setPosition(0);
-    backRightEncoder1.setPosition(0);
-    frontLeftEncoder2.setPosition(0);
-    frontRightEncoder2.setPosition(0);
-    backLeftEncoder2.setPosition(0);
-    backRightEncoder2.setPosition(0);
+    frontLeftEncoder.setPosition(0);
+    frontRightEncoder.setPosition(0);
+    backLeftEncoder.setPosition(0);
+    backRightEncoder.setPosition(0);
+    frontLeftMotor2.getEncoder().setPosition(0);
+    frontRightMotor2.getEncoder().setPosition(0);
+    backLeftMotor2.getEncoder().setPosition(0);
+    backRightMotor2.getEncoder().setPosition(0);
   }
 
   public double getAverageEncoderDistance() {
     double conversionFactor = Math.PI * Constants.RobotConstants.WHEEL_DIAMETER / Constants.RobotConstants.GEAR_RATIO;
-    return (frontLeftEncoder*conversionFactor + frontRightEncoder*conversionFactor + backLeftEncoder*conversionFactor + backRightEncoder*conversionFactor)/4;
+    return (frontLeftEncoder.getPosition()*conversionFactor + frontRightEncoder.getPosition()*conversionFactor + backLeftEncoder.getPosition()*conversionFactor + backRightEncoder.getPosition()*conversionFactor)/4;
   }
 
   public void resetGyro () {
