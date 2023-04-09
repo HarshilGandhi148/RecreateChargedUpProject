@@ -75,29 +75,6 @@ public class DriveSubsystem extends SubsystemBase {
     backRightMotor2.setSmartCurrentLimit(currentLimit);
   }
   
-  public void enableDriveVoltage(double voltage){
-    //default is 11
-    frontLeftMotor1.enableVoltageCompensation(voltage); 
-    frontRightMotor1.enableVoltageCompensation(voltage);
-    backLeftMotor1.enableVoltageCompensation(voltage);
-    backRightMotor1.enableVoltageCompensation(voltage);
-    frontLeftMotor2.enableVoltageCompensation(voltage); 
-    frontRightMotor2.enableVoltageCompensation(voltage);
-    backLeftMotor2.enableVoltageCompensation(voltage);
-    backRightMotor2.enableVoltageCompensation(voltage);
-  }
-  
-  public void disableDriveVoltage(){
-    frontLeftMotor1.disableVoltageCompensation();
-    frontRightMotor1.disableVoltageCompensation();
-    backLeftMotor1.disableVoltageCompensation();
-    backRightMotor1.disableVoltageCompensation();
-    frontLeftMotor2.disableVoltageCompensation();
-    frontRightMotor2.disableVoltageCompensation();
-    backLeftMotor2.disableVoltageCompensation();
-    backRightMotor2.disableVoltageCompensation();
-  }
-  
   public void setRampRate(double rate){
     frontLeftMotor1.setOpenLoopRampRate(rate);
     frontRightMotor1.setOpenLoopRampRate(rate);
@@ -156,8 +133,8 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getGyroPitch () {
-    // 8.92 is offset
-    return (gyro.getPitch() + 8.92) % 360;
+    // 0.31 is offset
+    return (gyro.getPitch() - 0.31) % 360;
   }
 
   public void mechDrive(double forward, double strafe, double rotation, boolean isFieldOriented){

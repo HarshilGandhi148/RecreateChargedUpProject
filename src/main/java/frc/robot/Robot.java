@@ -95,7 +95,6 @@ public class Robot extends TimedRobot {
     // this line or comment it out.
 
     Subsystems.driveSubsystem.setBrakeEnabled();
-    Subsystems.driveSubsystem.disableDriveVoltage();
     Subsystems.driveSubsystem.setRampRate(0.16667);
     Subsystems.driveSubsystem.setCurrentLimits(35);
     Subsystems.armSubsystem.setArmBrakeEnabled();
