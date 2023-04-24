@@ -36,25 +36,29 @@ public final class Constants {
 
   public static class ArmSetpoints {
     // High
-    public static final double highShoulder = 3.5;
-    public static final double highForearm = 135;
-    public static final double highWrist = 117.15;
+    public static final double highShoulder = 15;
+    public static final double highForearm = 115;
+    public static final double highWrist = 140;
 
-
-    // Low
-    public static final double lowShoulder = -10;
-    public static final double lowForearm = 90;
+    // Mid
+    public static final double lowShoulder = -20;
+    public static final double lowForearm = 60;
     public static final double lowWrist = 107.10;
 
     // Floor Intake
-    public static final double floorShoulder = 13;
-    public static final double floorForearm = 34.83;
-    public static final double floorWrist = 45;
+    public static final double floorShoulder = 25;
+    public static final double floorForearm = 20;
+    public static final double floorWrist = 66;
 
-    // Substation
-    public static final double substationShoulder = 5.14;
-    public static final double substationForearm = 120;
-    public static final double substationWrist = 108;
+    // Double Substation
+    public static final double doubleSubstationShoulder = -25;
+    public static final double doubleSubstationForearm = 85;
+    public static final double doubleSubstationWrist = 155;
+
+    // Single Substation
+    public static final double singleSubstationShoulder = 17;
+    public static final double singleSubstationForearm = -60;
+    public static final double singleSubstationWrist = 160;
 
     // Reset
     public static final double resetShoulder = 0;
@@ -73,17 +77,19 @@ public final class Constants {
       strafe: rightStick X axis
       rotate: leftStick X axis
       armAutomated: A button
-    operator;
+   
+    operator:
       shoulderManual: rightStick X axis
       forearmManual: rightStick Y axis
       wristManual: leftStick Y axis
+      
       intake: rightTrigger
       outake: leftTrigger
 
       highSetpoint: Y Button
       lowStepoint: B Button
       floorSetpoint: A Button
-      substationSetpoint: X button
+      doubleSubstationSetpoint: X button
       resetSetpoint: the button with 3 lines
   */
 }

@@ -12,7 +12,7 @@ import frc.robot.RobotContainer.Subsystems;
 
 public class ArmCommand extends CommandBase {
 
-  boolean armAutomated = false;
+  boolean armAutomated;
   /** Creates a new ArmCommand. */
   public ArmCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -28,6 +28,7 @@ public class ArmCommand extends CommandBase {
     Subsystems.armSubsystem.moveForearm(0);
     Subsystems.armSubsystem.moveWrist(0);
     Subsystems.armSubsystem.moveIntake(0);
+    armAutomated = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -49,25 +50,26 @@ public class ArmCommand extends CommandBase {
     }
 
     if (armAutomated) {
-      if (RobotContainer.operator.getYButtonPressed()) {
+      if (RobotContainer.operator.getYButtonReleased()) {
         Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.highShoulder;
         Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.highForearm;
         Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.highWrist;
 
-      } else if (RobotContainer.operator.getBButtonPressed()) {
+      } else if (RobotContainer.operator.getBButtonReleased()) {
         Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.lowShoulder;
         Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.lowForearm;
         Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.lowWrist;
 
-      } else if (RobotContainer.operator.getAButtonPressed()) {
+      } else if (RobotContainer.operator.getAButtonReleased()) {
         Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.floorShoulder;
         Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.floorForearm;
         Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.floorWrist;
 
-      } else if (RobotContainer.operator.getRawButton(8)) {
-        Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.substationShoulder;
-        Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.substationForearm;
-        Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.substationWrist;
+      } else if (RobotContainer.operator.getRawButtonReleased(8)) {
+        // button with three lines
+        Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.doubleSubstationShoulder;
+        Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.doubleSubstationForearm;
+        Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.doubleSubstationWrist;
 
       } else if (RobotContainer.operator.getXButtonPressed()) {
         Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.resetShoulder;

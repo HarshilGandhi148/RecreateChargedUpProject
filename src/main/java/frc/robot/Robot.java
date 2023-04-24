@@ -99,11 +99,11 @@ public class Robot extends TimedRobot {
     Subsystems.driveSubsystem.setCurrentLimits(35);
     Subsystems.armSubsystem.setArmBrakeEnabled();
 
-    // not used in competition as teleop should not reset encoders
-    Subsystems.driveSubsystem.resetEncoders();
-    Subsystems.armSubsystem.resetArmEncoders();
-    Subsystems.driveSubsystem.resetGyro();
-    Subsystems.armSubsystem.resetSetpoints();
+    // not used in competition as teleop should not reset encoders (comment it out)
+      Subsystems.driveSubsystem.resetEncoders();
+      Subsystems.armSubsystem.resetArmEncoders();
+      Subsystems.driveSubsystem.resetGyro();
+      Subsystems.armSubsystem.resetSetpoints();
 
 
 
@@ -125,10 +125,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Shoulder Encoder", Subsystems.armSubsystem.getShoulderAngle());
     SmartDashboard.putNumber("Forearm Encoder", Subsystems.armSubsystem.getForearmAngle());
     SmartDashboard.putNumber("Wrist Encoder", Subsystems.armSubsystem.getWristAngle());
-
-    SmartDashboard.putNumber("Shoulder Setpoint", Subsystems.armSubsystem.shoulderSetpoint);
-    SmartDashboard.putNumber("Forearm Setpoint", Subsystems.armSubsystem.forearmSetpoint);
-    SmartDashboard.putNumber("Wrist Setpoint", Subsystems.armSubsystem.wristSetpoint);
 
     // Also SmartDashboard value for armAutomated in arm Command
   }

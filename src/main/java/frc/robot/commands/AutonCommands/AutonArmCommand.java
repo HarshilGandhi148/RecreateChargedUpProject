@@ -12,7 +12,9 @@ import frc.robot.RobotContainer.Subsystems;
 public class AutonArmCommand extends CommandBase {
   int level;
   Timer timer;
+
   /** Creates a new AutonArmCommand. */
+  // level {int} - 0 = reset, 1 = ground, 2 = middle, 3 = high
   public AutonArmCommand(int level) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Subsystems.armSubsystem);
@@ -37,9 +39,9 @@ public class AutonArmCommand extends CommandBase {
         break;
       case 1:
         // numbers make it ground place not floor intake
-        Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.floorShoulder + 2.75;
-        Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.floorForearm + 3;
-        Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.floorWrist - 7.5;
+        Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.floorShoulder;
+        Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.floorForearm;
+        Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.floorWrist + 1.5;
         break;
       case 2:
         Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.lowShoulder;
