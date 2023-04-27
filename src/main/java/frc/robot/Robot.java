@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,6 +35,13 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    //NOT TESTED - test
+    // sets up port forwarding for use of limelight with ethernet (ports 5800, 5801, 5802, 5803, 5804, and 5805)
+      //for (int port = 5800; port <= 5805; port++) {
+      //  PortForwarder.add(port, "limelight.local", port);
+      //}
+
   }
 
   /**
@@ -89,11 +97,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-
     Subsystems.driveSubsystem.setBrakeEnabled();
     Subsystems.driveSubsystem.setRampRate(0.16667);
     Subsystems.driveSubsystem.setCurrentLimits(35);
@@ -111,6 +114,12 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().schedule(new ArmCommand());
     CommandScheduler.getInstance().schedule(new BalanceCommand());
 
+    /*--------------------------------------------------- 
+      This makes sure that the autonomous stops running when
+      teleop starts running. If you want the autonomous to
+      continue until interrupted by another command, remove
+      this line or comment it out. 
+    -----------------------------------------------------*/
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -126,15 +135,17 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Forearm Encoder", Subsystems.armSubsystem.getForearmAngle());
     SmartDashboard.putNumber("Wrist Encoder", Subsystems.armSubsystem.getWristAngle());
 
-    // Also SmartDashboard value for armAutomated in arm Command
+    SmartDashboard.putNumber("Pipeline", Subsystems.limelightSubsystem.pipeline);
+
+    // Also SmartDashboard value for armAutomated in ArmCommand
   }
 
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
+    CommandScheduler.getInstance().cancelAll();
     Subsystems.driveSubsystem.setCoastEnabled();
     Subsystems.armSubsystem.setArmCoastEnabled();
-    CommandScheduler.getInstance().cancelAll();
   }
 
   /** This function is called periodically during test mode. */

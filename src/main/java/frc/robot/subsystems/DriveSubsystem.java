@@ -120,7 +120,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getAverageEncoderDistance() {
-    double conversionFactor = Math.PI * Constants.RobotConstants.WHEEL_DIAMETER / Constants.RobotConstants.GEAR_RATIO;
+    double conversionFactor = Math.PI * Constants.RobotConstants.wheelDiameter / Constants.RobotConstants.driveGearRatio;
     return (frontLeftEncoder.getPosition()*conversionFactor + frontRightEncoder.getPosition()*conversionFactor + backLeftEncoder.getPosition()*conversionFactor + backRightEncoder.getPosition()*conversionFactor)/4;
   }
 

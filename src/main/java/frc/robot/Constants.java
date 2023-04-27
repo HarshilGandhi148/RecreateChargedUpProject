@@ -13,12 +13,12 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static class JoystickConstants {
+  public static final class JoystickConstants {
     public static final int kDriverControllerPort = 0;
     public static final int kOperatorControllerPort = 1;
   }
 
-  public static class CAN_IDs {
+  public static final class CAN_IDs {
     public static final int frontLeft1ID = 1;
     public static final int backLeft1ID = 2;
     public static final int frontRight1ID = 3;
@@ -34,7 +34,29 @@ public final class Constants {
     public static final int intakeID = 0;
   }
 
-  public static class ArmSetpoints {
+  public static final class RobotConstants {
+    public static final double wheelDiameter = 8;
+    public static final double limelightMountHeight = 35;
+
+    // gear ratios
+    public static final double driveGearRatio = 8.4;
+    public static final double forearmGearRatio = 0.005208;
+    public static final double shoulderGearRatio = 0.008;
+    public static final double wristGearRatio = 0.0052;
+    
+  }
+
+  public static final class FieldElements {
+    // all measurements in inches
+    public static final double topNodeHeight = 41.875;
+    public static final double middleNodeHeight = 22.125;
+    public static final double apriltagLowerHeight = 14.55;
+    public static final double apriltagUpperHeight = 52;
+    public static final double apriltagHeight = 25;
+  }
+
+
+  public static final class ArmSetpoints {
     // High
     public static final double highShoulder = 15;
     public static final double highForearm = 115;
@@ -66,11 +88,6 @@ public final class Constants {
     public static final double resetWrist = 0;
   }
 
-  public static final class RobotConstants {
-    public static final double WHEEL_DIAMETER = 8;
-    public static final double GEAR_RATIO = 8.4;
-  }
-
   /* Joystick controls:
     driver:
       drive: rightStick Y axis
@@ -90,6 +107,7 @@ public final class Constants {
       lowStepoint: B Button
       floorSetpoint: A Button
       doubleSubstationSetpoint: X button
-      resetSetpoint: the button with 3 lines
+      singleSubstationSetpoint: none
+      resetSetpoint: Start Button (the button with 3 lines)
   */
 }

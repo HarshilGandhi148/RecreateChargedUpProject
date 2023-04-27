@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.JoystickConstants;
 import frc.robot.commands.AutonPaths.AutonTest;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -24,6 +25,7 @@ public class RobotContainer {
   public static class Subsystems{
     public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
     public static final ArmSubsystem armSubsystem = new ArmSubsystem();
+    public static final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
   }
 
   public static XboxController driver = new XboxController(JoystickConstants.kDriverControllerPort);

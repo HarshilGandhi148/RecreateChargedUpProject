@@ -32,11 +32,6 @@ public class ArmSubsystem extends SubsystemBase {
   public double forearmSetpoint;
   public double wristSetpoint;
 
-  //gearRatios
-  double forearmGearRatio = 0.008;
-  double shoulderGearRatio = 60;
-  double wristGearRatio = 0.0052;
-
   // PID
   public GalacPIDController shoulderPID = new GalacPIDController(0.017, 0, 0, 0.01, () -> getShoulderAngle(), 0, 0);
   public GalacPIDController forearmPID = new GalacPIDController(0.02, 0.00, 0, 0.01, () -> getForearmAngle(), 0, 0);
@@ -98,17 +93,18 @@ public class ArmSubsystem extends SubsystemBase {
   }
 
   public double getForearmAngle() {
-    return (forearmEncoder.getPosition() * 360 * forearmGearRatio);
+    return (forearmEncoder.getPosition() * 360 * Constants.RobotConstants.forearmGearRatio);
   }
 
   public double getWristAngle() {
-    return (wristEncoder.getPosition() * 360 * wristGearRatio);
+    return (wristEncoder.getPosition() * 360 * Constants.RobotConstants.wristGearRatio);
   }
 
   public boolean hasFinished() {
-    return ((Math.abs(getShoulderAngle() - shoulderPID.getSetpoint()) < 5) && 
-            (Math.abs(getForearmAngle() - forearmPID.getSetpoint()) < 12) && 
-            (Math.abs(getWristAngle() - wristPID.getSetpoint()) < 5));
+    return
+    ((Math.abs(getShoulderAngle() - shoulderPID.getSetpoint()) < 5) && 
+     (Math.abs(getForearmAngle() - forearmPID.getSetpoint()) < 12) && 
+     (Math.abs(getWristAngle() - wristPID.getSetpoint()) < 5));
   }
 
   public void runArmPID () {
