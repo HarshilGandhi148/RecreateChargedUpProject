@@ -13,6 +13,7 @@ import frc.robot.RobotContainer.Subsystems;
 import frc.robot.commands.ArmCommand;
 import frc.robot.commands.BalanceCommand;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.PipelineSwitchCommand;
 
 
 /**
@@ -113,6 +114,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().schedule(new DriveCommand());
     CommandScheduler.getInstance().schedule(new ArmCommand());
     CommandScheduler.getInstance().schedule(new BalanceCommand());
+    CommandScheduler.getInstance().schedule(new PipelineSwitchCommand());
 
     /*--------------------------------------------------- 
       This makes sure that the autonomous stops running when
@@ -135,7 +137,15 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Forearm Encoder", Subsystems.armSubsystem.getForearmAngle());
     SmartDashboard.putNumber("Wrist Encoder", Subsystems.armSubsystem.getWristAngle());
 
-    SmartDashboard.putNumber("Pipeline", Subsystems.limelightSubsystem.pipeline);
+    if (Subsystems.limelightSubsystem.pipeline == 0) {
+      SmartDashboard.putString("Pipeline mode", "Apriltag");
+    } else if (Subsystems.limelightSubsystem.pipeline == 1) {
+      SmartDashboard.putString("Pipeline mode", "Low cone");
+    } else if (Subsystems.limelightSubsystem.pipeline == 2) {
+      SmartDashboard.putString("Pipeline mode", "High cone");
+    } else {
+      SmartDashboard.putString("Pipeline mode", "Unknown");
+    }
 
     // Also SmartDashboard value for armAutomated in ArmCommand
   }
