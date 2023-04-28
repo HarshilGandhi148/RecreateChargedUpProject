@@ -35,7 +35,7 @@ public class ArmCommand extends CommandBase {
   @Override
   public void execute() {
 
-    if (RobotContainer.driver.getAButtonReleased()) {
+    if (RobotContainer.driver.getXButtonPressed()) {
       armAutomated = !armAutomated;
     }
     SmartDashboard.putBoolean("Arm automated?", armAutomated);

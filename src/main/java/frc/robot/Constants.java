@@ -93,8 +93,13 @@ public final class Constants {
       drive: rightStick Y axis
       strafe: rightStick X axis
       rotate: leftStick X axis
-      armAutomated: A button
-   
+
+      armAutomated: X button
+
+      apriltag pipeline: A Button
+      low pipeline: B Button
+      high pipeline: B Button
+
     operator:
       shoulderManual: rightStick X axis
       forearmManual: rightStick Y axis
@@ -108,6 +113,6 @@ public final class Constants {
       floorSetpoint: A Button
       doubleSubstationSetpoint: X button
       singleSubstationSetpoint: none
-      resetSetpoint: Start Button (the button with 3 lines)
+      resetSetpoint: Start button (the button with 3 lines)
   */
 }
