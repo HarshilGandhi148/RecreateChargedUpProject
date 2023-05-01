@@ -133,12 +133,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Drive Encoder Distance", Subsystems.driveSubsystem.getAverageEncoderDistance());
     SmartDashboard.putNumber("Gyro Angle", Subsystems.driveSubsystem.getGyroYaw());
 
-    SmartDashboard.putNumber("Shoulder Encoder", Subsystems.armSubsystem.getShoulderAngle());
-    SmartDashboard.putNumber("Forearm Encoder", Subsystems.armSubsystem.getForearmAngle());
-    SmartDashboard.putNumber("Wrist Encoder", Subsystems.armSubsystem.getWristAngle());
+    SmartDashboard.putNumber("Shoulder Angle", Subsystems.armSubsystem.getShoulderAngle());
+    SmartDashboard.putNumber("Forearm Angle", Subsystems.armSubsystem.getForearmAngle());
+    SmartDashboard.putNumber("Wrist Angle", Subsystems.armSubsystem.getWristAngle());
 
     if (Subsystems.limelightSubsystem.pipeline == 0) {
-      SmartDashboard.putString("Pipeline mode", "Apriltag");
+      SmartDashboard.putString("Pipeline mode", "Apriltag: " + Subsystems.limelightSubsystem.tid);
     } else if (Subsystems.limelightSubsystem.pipeline == 1) {
       SmartDashboard.putString("Pipeline mode", "Low cone");
     } else if (Subsystems.limelightSubsystem.pipeline == 2) {
@@ -146,7 +146,7 @@ public class Robot extends TimedRobot {
     } else {
       SmartDashboard.putString("Pipeline mode", "Unknown");
     }
-
+    
     // Also SmartDashboard value for armAutomated in ArmCommand
   }
 

@@ -28,10 +28,10 @@ public final class Constants {
     public static final int frontRight2ID = 7;
     public static final int backRight2ID = 8;
 
-    public static final int shoulderID = 0;
-    public static final int forearmID = 0;
-    public static final int wristID = 0;
-    public static final int intakeID = 0;
+    public static final int shoulderID = 9;
+    public static final int forearmID = 10;
+    public static final int wristID = 11;
+    public static final int intakeID = 12;
   }
 
   public static final class RobotConstants {
@@ -93,6 +93,7 @@ public final class Constants {
       drive: rightStick Y axis
       strafe: rightStick X axis
       rotate: leftStick X axis
+      balance: rightBumper
 
       armAutomated: X button
 

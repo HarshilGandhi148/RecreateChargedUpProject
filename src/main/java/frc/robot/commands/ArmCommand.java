@@ -35,7 +35,7 @@ public class ArmCommand extends CommandBase {
   @Override
   public void execute() {
 
-    if (RobotContainer.driver.getXButtonPressed()) {
+    if (RobotContainer.driver.getXButton()) {
       armAutomated = !armAutomated;
     }
     SmartDashboard.putBoolean("Arm automated?", armAutomated);
@@ -50,28 +50,28 @@ public class ArmCommand extends CommandBase {
     }
 
     if (armAutomated) {
-      if (RobotContainer.operator.getYButtonReleased()) {
+      if (RobotContainer.operator.getYButton()) {
         Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.highShoulder;
         Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.highForearm;
         Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.highWrist;
 
-      } else if (RobotContainer.operator.getBButtonReleased()) {
+      } else if (RobotContainer.operator.getBButton()) {
         Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.lowShoulder;
         Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.lowForearm;
         Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.lowWrist;
 
-      } else if (RobotContainer.operator.getAButtonReleased()) {
+      } else if (RobotContainer.operator.getAButton()) {
         Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.floorShoulder;
         Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.floorForearm;
         Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.floorWrist;
 
-      } else if (RobotContainer.operator.getRawButtonReleased(8)) {
+      } else if (RobotContainer.operator.getRawButton(8)) {
         // button with three lines
         Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.doubleSubstationShoulder;
         Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.doubleSubstationForearm;
         Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.doubleSubstationWrist;
 
-      } else if (RobotContainer.operator.getXButtonPressed()) {
+      } else if (RobotContainer.operator.getXButton()) {
         Subsystems.armSubsystem.shoulderSetpoint = Constants.ArmSetpoints.resetShoulder;
         Subsystems.armSubsystem.forearmSetpoint = Constants.ArmSetpoints.resetForearm;
         Subsystems.armSubsystem.wristSetpoint = Constants.ArmSetpoints.resetWrist;

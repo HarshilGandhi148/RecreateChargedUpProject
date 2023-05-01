@@ -11,8 +11,8 @@ import frc.robot.RobotContainer.Subsystems;
 public class PipelineSwitchCommand extends CommandBase {
   /** Creates a new PipelineSwicthCommand. */
   public PipelineSwitchCommand() {
-    addRequirements(Subsystems.limelightSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Subsystems.limelightSubsystem);
   }
 
   // Called when the command is initially scheduled.

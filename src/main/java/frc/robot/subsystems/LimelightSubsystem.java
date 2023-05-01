@@ -25,7 +25,7 @@ public class LimelightSubsystem extends SubsystemBase {
   double tx;
   double ty;
   double ta;
-  double tid;
+  public double tid;
   boolean tv;
   public int pipeline = 0;
 
