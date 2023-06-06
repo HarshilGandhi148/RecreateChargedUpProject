@@ -90,16 +90,16 @@ public final class Constants {
 
   /* Joystick controls:
     driver:
-      drive: rightStick Y axis
-      strafe: rightStick X axis
-      rotate: leftStick X axis
+      drive: leftStick Y axis
+      strafe: leftStick X axis
+      rotate: rightStick X axis
       balance: rightBumper
 
       armAutomated: X button
 
       apriltag pipeline: A Button
       low pipeline: B Button
-      high pipeline: B Button
+      high pipeline: Y Button
 
     operator:
       shoulderManual: rightStick X axis
