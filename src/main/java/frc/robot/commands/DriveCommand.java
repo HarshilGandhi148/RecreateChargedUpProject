@@ -6,19 +6,22 @@ package frc.robot.commands;
 
 import frc.robot.RobotContainer;
 import frc.robot.RobotContainer.Subsystems;
+import frc.robot.subsystems.DriveSubsystem;
+import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class DriveCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  double forwardValue;
-  double strafeValue;
-  double turnValue;
+  private final DoubleSupplier m_forward;
+  private final DoubleSupplier m_strafe;
+  private final DoubleSupplier m_rotation;
 
-  
-  public DriveCommand(){
-   // m_subsystem = subsystem;                                                                                                                                                                                                        
+  public DriveCommand(DoubleSupplier forward, DoubleSupplier strafe, DoubleSupplier rotation){
+    m_forward = forward;
+    m_strafe = strafe;
+    m_rotation = rotation;                                                                                                                                                                                                                                                                                                                                                                                                     
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Subsystems.driveSubsystem);
   }
@@ -32,17 +35,7 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-    forwardValue = RobotContainer.driver.getLeftY();
-    strafeValue = RobotContainer.driver.getLeftX();
-    turnValue= RobotContainer.driver.getRightX();
-
-    MathUtil.applyDeadband(forwardValue, 0.02);
-    MathUtil.applyDeadband(strafeValue, 0.02);
-    MathUtil.applyDeadband(turnValue, 0.02);
-
-    // forward, strafe, turn respectively
-    Subsystems.driveSubsystem.mechDrive(forwardValue, -strafeValue, -turnValue, true);
+    Subsystems.driveSubsystem.mechDrive(m_forward.getAsDouble(), -m_strafe.getAsDouble(), -m_rotation.getAsDouble(), true);
   }
 
   // Called once the command ends or is interrupted.

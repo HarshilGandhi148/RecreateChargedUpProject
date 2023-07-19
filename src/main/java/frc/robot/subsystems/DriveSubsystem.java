@@ -14,8 +14,12 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+//import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import frc.robot.RobotContainer.Subsystems;
+import frc.robot.commands.DriveCommand;
 
 public class DriveSubsystem extends SubsystemBase {
   
@@ -51,6 +55,7 @@ public class DriveSubsystem extends SubsystemBase {
   
   /** Creates a new Subsystem. */
   public DriveSubsystem() {
+    Subsystems.driveSubsystem.setDefaultCommand(new DriveCommand(() -> RobotContainer.driver.getLeftY(), () -> RobotContainer.driver.getLeftX(), () -> RobotContainer.driver.getRightX()));
     frontLeftEncoder = frontLeftMotor1.getEncoder();
     frontRightEncoder = frontRightMotor1.getEncoder();
     backLeftEncoder = backLeftMotor1.getEncoder();
