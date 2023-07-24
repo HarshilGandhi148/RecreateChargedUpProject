@@ -55,7 +55,6 @@ public class DriveSubsystem extends SubsystemBase {
   
   /** Creates a new Subsystem. */
   public DriveSubsystem() {
-    Subsystems.driveSubsystem.setDefaultCommand(new DriveCommand(() -> RobotContainer.driver.getLeftY(), () -> RobotContainer.driver.getLeftX(), () -> RobotContainer.driver.getRightX()));
     frontLeftEncoder = frontLeftMotor1.getEncoder();
     frontRightEncoder = frontRightMotor1.getEncoder();
     backLeftEncoder = backLeftMotor1.getEncoder();

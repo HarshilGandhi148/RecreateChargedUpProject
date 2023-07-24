@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.JoystickConstants;
+import frc.robot.commands.DriveCommand;
 import frc.robot.commands.AutonPaths.AutonTest;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
@@ -38,6 +39,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
+    Subsystems.driveSubsystem.setDefaultCommand(new DriveCommand(() -> RobotContainer.driver.getLeftY(), () -> RobotContainer.driver.getLeftX(), () -> RobotContainer.driver.getRightX()));
     configureBindings();
   }
 
