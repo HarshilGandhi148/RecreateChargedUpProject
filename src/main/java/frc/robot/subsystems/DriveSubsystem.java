@@ -60,8 +60,10 @@ public class DriveSubsystem extends SubsystemBase {
     backLeftEncoder = backLeftMotor1.getEncoder();
     backRightEncoder = backRightMotor1.getEncoder();
 
-    frontRightGroup.setInverted(true);
-    backRightGroup.setInverted(true);
+    frontRightMotor1.setInverted(true);
+    frontRightMotor2.setInverted(true);
+    backRightMotor1.setInverted(true);
+    backRightMotor2.setInverted(true);
 
     mecanumDrive = new MecanumDrive(frontLeftGroup, backLeftGroup, frontRightGroup, backRightGroup);
 

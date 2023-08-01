@@ -110,7 +110,7 @@ public class Robot extends TimedRobot {
       Subsystems.armSubsystem.resetSetpoints();
 
 
-    //CommandScheduler.getInstance().schedule(new DriveCommand(() -> RobotContainer.driver.getLeftY(), () -> RobotContainer.driver.getLeftX(), () -> RobotContainer.driver.getRightX()));
+    CommandScheduler.getInstance().setDefaultCommand(Subsystems.driveSubsystem, (new DriveCommand(() -> RobotContainer.driver.getLeftY(), () -> RobotContainer.driver.getLeftX(), () -> RobotContainer.driver.getRightX())));
     CommandScheduler.getInstance().schedule(new ArmCommand());
     CommandScheduler.getInstance().schedule(new BalanceCommand());
     CommandScheduler.getInstance().schedule(new PipelineSwitchCommand());
