@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.JoystickConstants;
+import frc.robot.commands.BalanceCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.AutonPaths.AutonTest;
 import frc.robot.subsystems.DriveSubsystem;
@@ -13,6 +14,7 @@ import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -29,8 +31,9 @@ public class RobotContainer {
     public static final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
   }
 
-  public static XboxController driver = new XboxController(JoystickConstants.kDriverControllerPort);
-  public static XboxController operator = new XboxController(JoystickConstants.kOperatorControllerPort);
+  public static CommandXboxController driver = new CommandXboxController(JoystickConstants.kDriverControllerPort);
+  public static CommandXboxController operator = new CommandXboxController(JoystickConstants.kOperatorControllerPort);
+  Trigger rightBumper = driver.rightBumper();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
 
@@ -52,13 +55,16 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+
+    driver.rightBumper().whileTrue(new BalanceCommand(() -> driver.getLeftX()));
+
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
     // new Trigger(m_exampleSubsystem::exampleCondition)
     //     .onTrue(new ExampleCommand(m_exampleSubsystem));
 
     // // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // // cancelling on release.
-    // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+    //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
   }
 
   /**
