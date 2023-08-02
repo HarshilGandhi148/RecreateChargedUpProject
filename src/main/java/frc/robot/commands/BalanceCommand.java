@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.RobotContainer.Subsystems;
@@ -12,11 +14,13 @@ import frc.robot.utils.GalacPIDController;
 public class BalanceCommand extends CommandBase {
   GalacPIDController turnPID;
   GalacPIDController balancePID;
+  private final DoubleSupplier m_strafe;
   /** Creates a new BalanceCommand. */
-  public BalanceCommand() {
+  public BalanceCommand(DoubleSupplier strafe) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Subsystems.driveSubsystem);
-    turnPID = new GalacPIDController(0.004, 0, 0, 0.005, () -> Subsystems.driveSubsystem.getGyroYaw(), 0, 0);
+    m_strafe = strafe;
+    turnPID = new GalacPIDController(0.004, 0, 0, 0.005, () -> Subsystems.driveSubsystem.getGyroPitch(), 0, 0);
     balancePID = new GalacPIDController(0.0065, 0.0003, 0, 0, () -> Subsystems.driveSubsystem.getGyroYaw(), 0, 0);
   }
 
@@ -24,15 +28,12 @@ public class BalanceCommand extends CommandBase {
   @Override
   public void initialize() {
     Subsystems.driveSubsystem.setBrakeEnabled();
-    Subsystems.driveSubsystem.mechDrive(0, 0, 0, isFinished());
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (RobotContainer.driver.getRightBumperPressed()) {
-      Subsystems.driveSubsystem.mechDrive(balancePID.getEffort(), 0, -turnPID.getEffort(), isFinished());
-    }
+      Subsystems.driveSubsystem.mechDrive(balancePID.getEffort(), -m_strafe.getAsDouble(), -turnPID.getEffort(), isFinished());
   }
 
   // Called once the command ends or is interrupted.

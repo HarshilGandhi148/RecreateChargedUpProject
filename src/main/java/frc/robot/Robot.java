@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.RobotContainer.Subsystems;
-import frc.robot.commands.ArmCommand;
+//import frc.robot.commands.ArmCommand;
 import frc.robot.commands.BalanceCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.PipelineSwitchCommand;
+//import frc.robot.commands.PipelineSwitchCommand;
 
 
 /**
@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    //NOT TESTED - test
+    //TODO: test
     // sets up port forwarding for use of limelight with ethernet (ports 5800, 5801, 5802, 5803, 5804, and 5805)
       //for (int port = 5800; port <= 5805; port++) {
       //  PortForwarder.add(port, "limelight.local", port);
@@ -111,9 +111,9 @@ public class Robot extends TimedRobot {
 
 
     CommandScheduler.getInstance().setDefaultCommand(Subsystems.driveSubsystem, (new DriveCommand(() -> RobotContainer.driver.getLeftY(), () -> RobotContainer.driver.getLeftX(), () -> RobotContainer.driver.getRightX())));
-    CommandScheduler.getInstance().schedule(new ArmCommand());
-    CommandScheduler.getInstance().schedule(new BalanceCommand());
-    CommandScheduler.getInstance().schedule(new PipelineSwitchCommand());
+    //CommandScheduler.getInstance().schedule(new ArmCommand());
+    //CommandScheduler.getInstance().schedule(new BalanceCommand());
+    //CommandScheduler.getInstance().schedule(new PipelineSwitchCommand());
 
     /*--------------------------------------------------- 
       This makes sure that the autonomous stops running when
