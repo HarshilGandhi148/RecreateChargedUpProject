@@ -6,12 +6,12 @@ package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 import frc.robot.RobotContainer.Subsystems;
 import frc.robot.utils.GalacPIDController;
 
-public class BalanceCommand extends CommandBase {
+public class BalanceCommand extends Command {
   GalacPIDController turnPID;
   GalacPIDController balancePID;
   private final DoubleSupplier m_strafe;
@@ -33,7 +33,7 @@ public class BalanceCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      Subsystems.driveSubsystem.mechDrive(balancePID.getEffort(), -m_strafe.getAsDouble(), -turnPID.getEffort(), isFinished());
+    Subsystems.driveSubsystem.mechDrive(balancePID.getEffort(), -m_strafe.getAsDouble(), -turnPID.getEffort(), isFinished());
   }
 
   // Called once the command ends or is interrupted.

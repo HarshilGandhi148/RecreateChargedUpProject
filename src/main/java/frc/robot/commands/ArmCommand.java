@@ -5,12 +5,12 @@
 // package frc.robot.commands;
 
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-// import edu.wpi.first.wpilibj2.command.CommandBase;
+// import edu.wpi.first.wpilibj2.command.Command;
 // import frc.robot.Constants;
 // import frc.robot.RobotContainer;
 // import frc.robot.RobotContainer.Subsystems;
 
-// public class ArmCommand extends CommandBase {
+// public class ArmCommand extends Command {
 
 //   boolean armAutomated;
 //   /** Creates a new ArmCommand. */

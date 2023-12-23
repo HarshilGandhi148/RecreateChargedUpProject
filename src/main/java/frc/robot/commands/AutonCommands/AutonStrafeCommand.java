@@ -5,11 +5,11 @@
 package frc.robot.commands.AutonCommands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer.Subsystems;
 import frc.robot.utils.GalacPIDController;
 
-public class AutonStrafeCommand extends CommandBase {
+public class AutonStrafeCommand extends Command {
 
   double effort;
   double time;

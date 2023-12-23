@@ -5,10 +5,10 @@
 package frc.robot.commands.AutonCommands;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer.Subsystems;
 
-public class AutonIntakeCommand extends CommandBase {
+public class AutonIntakeCommand extends Command {
 
   Timer timer;
   double time;

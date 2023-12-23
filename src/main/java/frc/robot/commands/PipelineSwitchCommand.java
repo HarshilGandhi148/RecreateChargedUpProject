@@ -4,11 +4,11 @@
 
 // package frc.robot.commands;
 
-// import edu.wpi.first.wpilibj2.command.CommandBase;
+// import edu.wpi.first.wpilibj2.command.Command;
 // import frc.robot.RobotContainer;
 // import frc.robot.RobotContainer.Subsystems;
 
-// public class PipelineSwitchCommand extends CommandBase {
+// public class PipelineSwitchCommand extends Command {
 //   /** Creates a new PipelineSwicthCommand. */
 //   public PipelineSwitchCommand() {
 //     // Use addRequirements() here to declare subsystem dependencies.
